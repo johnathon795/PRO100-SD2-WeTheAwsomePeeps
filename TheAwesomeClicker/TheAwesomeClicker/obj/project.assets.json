@@ -7004,24 +7004,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Julian Reyes\\.nuget\\packages\\": {},
+    "C:\\Users\\JWPeace\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Julian Reyes\\source\\repos\\PRO100-SD2-WeTheAwsomePeeps\\TheAwesomeClicker\\TheAwesomeClicker\\TheAwesomeClicker.csproj",
+      "projectUniqueName": "C:\\Users\\JWPeace\\Documents\\Neumont\\Q8\\Sprint2\\SoftwareProj\\PRO100-SD2-WeTheAwsomePeeps\\TheAwesomeClicker\\TheAwesomeClicker\\TheAwesomeClicker.csproj",
       "projectName": "TheAwesomeClicker",
-      "projectPath": "C:\\Users\\Julian Reyes\\source\\repos\\PRO100-SD2-WeTheAwsomePeeps\\TheAwesomeClicker\\TheAwesomeClicker\\TheAwesomeClicker.csproj",
-      "packagesPath": "C:\\Users\\Julian Reyes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Julian Reyes\\source\\repos\\PRO100-SD2-WeTheAwsomePeeps\\TheAwesomeClicker\\TheAwesomeClicker\\obj\\",
+      "projectPath": "C:\\Users\\JWPeace\\Documents\\Neumont\\Q8\\Sprint2\\SoftwareProj\\PRO100-SD2-WeTheAwsomePeeps\\TheAwesomeClicker\\TheAwesomeClicker\\TheAwesomeClicker.csproj",
+      "packagesPath": "C:\\Users\\JWPeace\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JWPeace\\Documents\\Neumont\\Q8\\Sprint2\\SoftwareProj\\PRO100-SD2-WeTheAwsomePeeps\\TheAwesomeClicker\\TheAwesomeClicker\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Julian Reyes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JWPeace\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
