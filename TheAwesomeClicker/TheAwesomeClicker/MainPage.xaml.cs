@@ -25,6 +25,24 @@ namespace TheAwesomeClicker
         public MainPage()
         {
             this.InitializeComponent();
+            //upgradesListBox.ItemsSource = GetUpgradeButtons();
+        }
+
+        //Creates and organizes data fields from upgrade list and returns the formatted buttons
+        public List<Button> GetUpgradeButtons()
+        {
+            List<Button> buttons = new List<Button>();
+            foreach (Button b in buttons)
+            {
+                
+            }
+
+            return buttons;
+        }
+
+        private void Clicker_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
         }
     }
 }
