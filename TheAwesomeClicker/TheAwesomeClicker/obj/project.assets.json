@@ -7010,11 +7010,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Walker Price\\Desktop\\PRO100\\ClickerGame\\TheAwesomeClicker\\TheAwesomeClicker\\TheAwesomeClicker.csproj",
       "projectName": "TheAwesomeClicker",
       "projectPath": "C:\\Users\\Walker Price\\Desktop\\PRO100\\ClickerGame\\TheAwesomeClicker\\TheAwesomeClicker\\TheAwesomeClicker.csproj",
       "packagesPath": "C:\\Users\\Walker Price\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Walker Price\\Desktop\\PRO100\\ClickerGame\\TheAwesomeClicker\\TheAwesomeClicker\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\JWPeace\\Documents\\Neumont\\Q8\\Sprint2\\SoftwareProj\\PRO100-SD2-WeTheAwsomePeeps\\TheAwesomeClicker\\TheAwesomeClicker\\TheAwesomeClicker.csproj",
+      "projectName": "TheAwesomeClicker",
+      "projectPath": "C:\\Users\\JWPeace\\Documents\\Neumont\\Q8\\Sprint2\\SoftwareProj\\PRO100-SD2-WeTheAwsomePeeps\\TheAwesomeClicker\\TheAwesomeClicker\\TheAwesomeClicker.csproj",
+      "packagesPath": "C:\\Users\\JWPeace\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JWPeace\\Documents\\Neumont\\Q8\\Sprint2\\SoftwareProj\\PRO100-SD2-WeTheAwsomePeeps\\TheAwesomeClicker\\TheAwesomeClicker\\obj\\",
+>>>>>>> master
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
