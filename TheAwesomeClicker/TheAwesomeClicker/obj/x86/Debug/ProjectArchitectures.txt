@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-C:\Users\Julian Reyes\source\repos\PRO100-SD2-WeTheAwsomePeeps\TheAwesomeClicker\TheAwesomeClicker\TheAwesomeClicker.csproj;x86
-=======
-C:\Users\JWPeace\Documents\Neumont\Q8\Sprint2\SoftwareProj\PRO100-SD2-WeTheAwsomePeeps\TheAwesomeClicker\TheAwesomeClicker\TheAwesomeClicker.csproj;x86
->>>>>>> master
