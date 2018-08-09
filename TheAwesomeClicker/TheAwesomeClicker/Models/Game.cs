@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TheAwesomeClicker.Models
 {
+    [Serializable]
     public class Game
     {
 
@@ -16,7 +19,6 @@ namespace TheAwesomeClicker.Models
         public double IdleAmount { get; set; }
         
         public List<Upgrade> UpgradesList { get; set; }
-
 
     }
 }

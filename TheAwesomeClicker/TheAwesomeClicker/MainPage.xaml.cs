@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization.Formatters.Binary;
 using TheAwesomeClicker.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -21,6 +22,7 @@ namespace TheAwesomeClicker
     public sealed partial class MainPage : Page
     {
         Game game;
+        BinaryFormatter bf = new BinaryFormatter();
         public MainPage()
         {
             this.InitializeComponent();
@@ -28,12 +30,26 @@ namespace TheAwesomeClicker
             {
                 
             };
-            
+            upgradesListBox.ItemsSource = game.UpgradesList;
         }
 
         private void Clicker_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
+        }
+
+        public void SaveGame()
+        {
+            FileStream f = new FileStream("sgd.dat", FileMode.Create);
+            bf.Serialize(f, game);
+            f.Close();
+        }
+
+        public void LoadGame()
+        {
+            FileStream f = new FileStream("sgd.dat", FileMode.Open);
+            game = (Game)bf.Deserialize(f);
+            f.Close();
         }
     }
 }
