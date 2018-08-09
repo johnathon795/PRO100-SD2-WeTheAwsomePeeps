@@ -8,9 +8,13 @@ namespace TheAwesomeClicker.Models
 {
     public class Upgrade
     {
-        public Upgrade()
+        public Upgrade(string name, int changeValue, string path, double cost, bool IsBought = false)
         {
-
+            Name = name;
+            ChangeValue = changeValue;
+            IconPath = path;
+            Cost = cost;
+            this.IsBought = IsBought;
         }
 
         private int changeValue;
