@@ -16,9 +16,23 @@ namespace TheAwesomeClicker.Models
 
         public double PerSecondAmount { get; set; }
 
-        public double IdleAmount { get; set; }
+        public double ClickAmount { get; set; }
         
         public List<Upgrade> UpgradesList { get; set; }
 
+        public void CanAfford(Upgrade toBuy)
+        {
+            if(toBuy.Cost < TotalCoin)
+            {
+                BuyUpgrade(toBuy);
+            }
+        }
+
+        public void BuyUpgrade(Upgrade toBuy)
+        {
+            TotalCoin -= toBuy.Cost;
+            toBuy.IsBought = true;
+            ClickAmount += toBuy.ChangeValue;
+        }
     }
 }
