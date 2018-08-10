@@ -14,10 +14,10 @@
             <ColumnDefinition Width="33*" />
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Total Coin:" FontSize="24" Margin="5 20"/>
-        <TextBlock x:Name="rateBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="40" FontSize="24" Text="{x:Bind game.TotalCoin , Mode=TwoWay}" Margin="120, 20" />
+        <TextBlock x:Name="rateBox" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Text="{x:Bind game.TotalCoin , Mode=TwoWay}" Margin="120, 20" />
 
         <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" Text="Rate:" FontSize="24" Margin="255 20"/>
-        <TextBlock x:Name="pointsBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="250" Height="40" FontSize="24" Text="{x:Bind game.ClickAmount, Mode=TwoWay}" Margin="0 20"/>
+        <TextBlock x:Name="pointsBox" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="24" Text="{x:Bind game.ClickAmount, Mode=TwoWay}" Margin="250 20"/>
         
         <Ellipse x:Name="clicker" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="300" Height="300" Fill="Black" Grid.Column="0" Tapped="Clicker_Tapped"/>
 

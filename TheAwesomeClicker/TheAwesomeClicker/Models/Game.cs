@@ -15,14 +15,14 @@ namespace TheAwesomeClicker.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private double totalCoind = 0;
+        private double totalCoin = 0;
 
         public double TotalCoin
         {
-            get { return totalCoind; }
+            get { return totalCoin; }
             set
             {
-                totalCoind = value;
+                totalCoin = value;
                 FieldChanged();
             }
         }
@@ -43,7 +43,7 @@ namespace TheAwesomeClicker.Models
         }
 
 
-        private double clickAmount = 0;
+        private double clickAmount = 1;
 
         public double ClickAmount
         {
