@@ -9,11 +9,11 @@ namespace TheAwesomeClicker.Models
 {
     public class Upgrade : Button
     {
-        public Upgrade(string name, int changeValue, string path, double cost, bool IsBought = false)
+        public Upgrade(string name, int changeValue, string iconPath, double cost, bool IsBought = false)
         {
             Name = name;
             ChangeValue = changeValue;
-            IconPath = path;
+            IconPath = iconPath;
             Cost = cost;
             this.IsBought = IsBought;
         }

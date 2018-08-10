@@ -35,7 +35,7 @@ namespace TheAwesomeClicker
 
         private void Clicker_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            game.TotalCoin += game.ClickAmount;
         }
 
         public void SaveGame()

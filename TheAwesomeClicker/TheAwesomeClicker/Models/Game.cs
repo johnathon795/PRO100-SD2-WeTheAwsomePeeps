@@ -4,25 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace TheAwesomeClicker.Models
 {
-    [Serializable]
-    public class Game
+    
+    public class Game : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public double TotalCoin { get; set; }
 
         public double PerSecondAmount { get; set; }
 
-        public double ClickAmount { get; set; }
-        
+
+        private double clickAmount;
+
+        public double ClickAmount
+        {
+            get { return clickAmount; }
+            set { clickAmount = value; }
+        }
+
         public List<Upgrade> UpgradesList { get; set; }
+
+        protected void FieldChanged([CallerMemberName] string field = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(field));
+        }
 
         public void CanAfford(Upgrade toBuy)
         {
-            if(toBuy.Cost < TotalCoin)
+            if(toBuy.Cost < TotalCoin && !toBuy.IsBought)
             {
                 BuyUpgrade(toBuy);
             }
