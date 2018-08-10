@@ -15,17 +15,44 @@ namespace TheAwesomeClicker.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public double TotalCoin { get; set; }
+        private double totalCoind = 0;
 
-        public double PerSecondAmount { get; set; }
+        public double TotalCoin
+        {
+            get { return totalCoind; }
+            set
+            {
+                totalCoind = value;
+                FieldChanged();
+            }
+        }
+
+        private double perSecondAmount = 0;
+
+        public double PerSecondAmount
+        {
+            get
+            {
+                return perSecondAmount;
+            }
+            set
+            {
+                perSecondAmount = value;
+                FieldChanged();
+            }
+        }
 
 
-        private double clickAmount;
+        private double clickAmount = 0;
 
         public double ClickAmount
         {
             get { return clickAmount; }
-            set { clickAmount = value; }
+            set
+            {
+                clickAmount = value;
+                FieldChanged();
+            }
         }
 
         public List<Upgrade> UpgradesList { get; set; }
