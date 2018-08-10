@@ -13,13 +13,21 @@
             <ColumnDefinition  Width="66*" />
             <ColumnDefinition Width="33*" />
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="rateBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="40" FontSize="24" Text="Points: 11111111" Margin="20, 20" />
-        <TextBlock x:Name="pointsBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="250" Height="40" FontSize="24" Text="Rate: 22222222 / Sec" Margin="20, 20"/>
-        <Ellipse x:Name="clicker" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="300" Height="300" Fill="Black" Grid.Column="0" Tapped="Clicker_Tapped"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="95*" />
+        </Grid.RowDefinitions>
+        <CommandBar Grid.ColumnSpan="2" Background="LightGray">
+            <AppBarButton Click="SaveGame" Icon="Save"/>
+            <AppBarButton Click="LoadGame" Icon="Upload" />
+        </CommandBar>
+        <TextBlock x:Name="rateBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="40" FontSize="24" Text="Points: 11111111" Grid.Row="1" Margin="20, 20" />
+        <TextBlock x:Name="pointsBox" HorizontalAlignment="Right" VerticalAlignment="Top" Width="250" Height="40" FontSize="24" Text="Rate: 22222222 / Sec" Grid.Row="1" Margin="20, 20"/>
+        <Ellipse x:Name="clicker" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="300" Height="300" Fill="Black" Grid.Column="0" Grid.Row="1" Tapped="Clicker_Tapped"/>
 
         <!-- Elements to be placed under right grid column (1) -->
-        <StackPanel x:Name="upgradesPanel" Grid.Column="1" Grid.ColumnSpan="1" Background="Green">
-            <ListBox x:Name="upgradesListBox" >
+        <StackPanel x:Name="upgradesPanel" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1" Background="Green">
+            <ListBox x:Name="upgradesListBox">
                 
             </ListBox>
         </StackPanel>

@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
 namespace TheAwesomeClicker.Models
 {
-    public class Upgrade : Button
+    [DataContract]
+    public class Upgrade : Button, IExtensibleDataObject
     {
+
         public Upgrade(string name, int changeValue, string path, double cost, bool IsBought = false)
         {
             Name = name;
@@ -18,31 +21,36 @@ namespace TheAwesomeClicker.Models
             this.IsBought = IsBought;
         }
 
-        private int changeValue;
+        public Upgrade()
+        {
 
-        public int ChangeValue
+        }
+
+       [IgnoreDataMember] private int changeValue;
+
+        [DataMember] public int ChangeValue
         {
             get { return changeValue; }
             set { changeValue = value; }
         }
 
-        private bool isBought;
+        [IgnoreDataMember] private bool isBought;
 
-        public bool IsBought
+        [DataMember] public bool IsBought
         {
             get { return isBought; }
             set { isBought = value; }
         }
 
-        private string title;
+        [IgnoreDataMember] private string title;
 
-        public string Title
+        [DataMember] public string Title
         {
             get { return title; }
             set { title = value; }
         }
 
-        private string iconPath;
+        [IgnoreDataMember] private string iconPath;
 
         public string IconPath
         {
@@ -50,13 +58,14 @@ namespace TheAwesomeClicker.Models
             set { iconPath = value; }
         }
 
-        private double cost;
+        [IgnoreDataMember] private double cost;
 
-        public double Cost
+        [DataMember] public double Cost
         {
             get { return cost; }
             set { cost = value; }
         }
 
+        public ExtensionDataObject ExtensionData { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

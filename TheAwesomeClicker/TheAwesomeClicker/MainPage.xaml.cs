@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Json;
+using System.Xml.Serialization;
 using TheAwesomeClicker.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -21,10 +25,12 @@ namespace TheAwesomeClicker
 {
     public sealed partial class MainPage : Page
     {
-        Game game;
-        BinaryFormatter bf = new BinaryFormatter();
+        static Game game;
+        StorageFolder folder = ApplicationData.Current.LocalFolder;
+        public DataContractSerializer js = new DataContractSerializer(typeof(Game));
         public MainPage()
         {
+            
             this.InitializeComponent();
             game = new Game()
             {
@@ -38,18 +44,50 @@ namespace TheAwesomeClicker
 
         }
 
-        public void SaveGame()
+        public async void SaveGame(object sender, RoutedEventArgs e)
         {
-            FileStream f = new FileStream("sgd.dat", FileMode.Create);
-            bf.Serialize(f, game);
+            StorageFile f = await folder.CreateFileAsync("sgd.xml", CreationCollisionOption.ReplaceExisting);
+            
+            //js.WriteObject(f, game);
+            //FileStream f = new FileStream("../sgd.xml", FileMode.Create);
+
+        }
+
+        public void LoadGame(object sender, RoutedEventArgs e)
+        {
+
+            FileStream f = new FileStream("sgd.xml", FileMode.Open);
+            game = (Game)js.ReadObject(f);
             f.Close();
         }
 
-        public void LoadGame()
-        {
-            FileStream f = new FileStream("sgd.dat", FileMode.Open);
-            game = (Game)bf.Deserialize(f);
-            f.Close();
-        }
+        //public async void LoadGame(object sender, RoutedEventArgs e)
+        //{
+        //    // this reads XML content from a file ("filename") and returns an object from the XML
+        //    Game objectFromXml = default(Game);
+        //    var serializer = new XmlSerializer(typeof(Game));
+        //    StorageFolder folder = ApplicationData.Current.LocalFolder;
+        //    StorageFile file = await folder.GetFileAsync("sgd.xml");
+        //    Stream stream = await file.OpenStreamForReadAsync();
+        //    objectFromXml = (Game)serializer.Deserialize(stream);
+        //    stream.Dispose();
+        //    game = objectFromXml;
+        //}
+
+        //public async void SaveGame(object sender, RoutedEventArgs e)
+        //{
+        //    // stores an object in XML format in file called 'filename'
+        //    XmlSerializer serializer = new XmlSerializer(typeof(Game));
+        //    StorageFolder folder = ApplicationData.Current.LocalFolder;
+        //    StorageFile file = await folder.CreateFileAsync("sgd.xml", CreationCollisionOption.ReplaceExisting);
+        //    Stream stream = await file.OpenStreamForWriteAsync();
+
+        //    using (stream)
+        //    {
+        //        serializer.Serialize(stream, game);
+        //    }
+        //}
+
     }
+
 }

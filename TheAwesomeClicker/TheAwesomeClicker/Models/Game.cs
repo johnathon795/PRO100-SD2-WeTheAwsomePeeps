@@ -8,17 +8,17 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TheAwesomeClicker.Models
 {
-    [Serializable]
-    public class Game
+    [DataContract]
+    public class Game : IExtensibleDataObject
     {
 
-        public double TotalCoin { get; set; }
+        [DataMember] public double TotalCoin { get; set; }
 
-        public double PerSecondAmount { get; set; }
+        [DataMember] public double PerSecondAmount { get; set; }
 
-        public double IdleAmount { get; set; }
+        [DataMember] public double IdleAmount { get; set; }
         
-        public List<Upgrade> UpgradesList { get; set; }
-
+        [DataMember] public List<Upgrade> UpgradesList { get; set; }
+        public ExtensionDataObject ExtensionData { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
