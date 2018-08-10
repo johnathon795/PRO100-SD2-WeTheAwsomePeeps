@@ -55,7 +55,20 @@ namespace TheAwesomeClicker.Models
             }
         }
 
-        public List<Upgrade> UpgradesList { get; set; }
+        private List<Upgrade> upgradeList = new List<Upgrade>() { new Upgrade("test upgrade", 10, "", 10)};
+
+        public List<Upgrade> UpgradesList
+        {
+            get
+            {
+                return upgradeList;
+            }
+            set
+            {
+                upgradeList = value;
+                FieldChanged();
+            }
+        }
 
         protected void FieldChanged([CallerMemberName] string field = null)
         {

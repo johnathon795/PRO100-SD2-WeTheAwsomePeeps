@@ -16,6 +16,7 @@ namespace TheAwesomeClicker.Models
             IconPath = iconPath;
             Cost = cost;
             this.IsBought = IsBought;
+            this.Content = $"{Name} Price: {Cost}";
         }
 
         private int changeValue;

@@ -30,6 +30,12 @@ namespace TheAwesomeClicker
                 
             };
             upgradesListBox.ItemsSource = game.UpgradesList;
+            foreach (Upgrade up in game.UpgradesList) up.Tapped += Up_Tapped;
+        }
+
+        private void Up_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            game.CanAfford((Upgrade)sender);
         }
 
         private void Clicker_Tapped(object sender, TappedRoutedEventArgs e)
