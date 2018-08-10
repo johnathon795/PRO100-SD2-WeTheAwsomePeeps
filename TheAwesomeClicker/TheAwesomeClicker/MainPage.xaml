@@ -7,19 +7,31 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="66*" />
             <ColumnDefinition Width="33*" />
         </Grid.ColumnDefinitions>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Text="Total Coin:" FontSize="24" Margin="5 20"/>
-        <TextBlock x:Name="rateBox" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Text="{x:Bind game.TotalCoin , Mode=TwoWay}" Margin="120, 20" />
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Text="Total Coin :" FontSize="24" Margin="5 20"/>
+        <TextBlock x:Name="rateBox" 
+                   HorizontalAlignment="Left" VerticalAlignment="Top" 
+                   FontSize="24" 
+                   Text="{x:Bind game.TotalCoin , Mode=TwoWay}" 
+                   Margin="130, 20" />
 
-        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" Text="Rate:" FontSize="24" Margin="255 20"/>
-        <TextBlock x:Name="pointsBox" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="24" Text="{x:Bind game.ClickAmount, Mode=TwoWay}" Margin="250 20"/>
+        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" 
+                   Text="Click Rate :" FontSize="24" Margin="240 20"/>
+        <TextBlock x:Name="pointsBox" 
+                   HorizontalAlignment="Right" VerticalAlignment="Top" 
+                   FontSize="24" 
+                   Text="{x:Bind game.ClickAmount, Mode=TwoWay}" 
+                   Margin="225 20"/>
         
-        <Ellipse x:Name="clicker" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="300" Height="300" Fill="Black" Grid.Column="0" Tapped="Clicker_Tapped"/>
+        <Ellipse x:Name="clicker" HorizontalAlignment="Center" VerticalAlignment="Center"  
+                 Width="300" Height="300" 
+                 Fill="Black" Grid.Column="0" Tapped="Clicker_Tapped"/>
 
         <!-- Elements to be placed under right grid column (1) -->
         <StackPanel x:Name="upgradesPanel" Grid.Column="1" Grid.ColumnSpan="1" Background="Green">
