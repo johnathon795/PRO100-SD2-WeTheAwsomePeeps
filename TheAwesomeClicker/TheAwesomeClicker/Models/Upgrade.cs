@@ -11,18 +11,17 @@ namespace TheAwesomeClicker.Models
     [DataContract]
     public class Upgrade : Button, IExtensibleDataObject
     {
-
-        public Upgrade(string name, int changeValue, string path, double cost, bool IsBought = false)
+        public Upgrade(string name, int changeValue, string iconPath, double cost, bool IsBought = false)
         {
             Name = name;
             ChangeValue = changeValue;
-            IconPath = path;
+            IconPath = iconPath;
             Cost = cost;
             this.IsBought = IsBought;
+            this.Content = $"{Name} Price: {Cost}";
         }
 
-        public Upgrade()
-        {
+        private int changeValue;
 
         }
 

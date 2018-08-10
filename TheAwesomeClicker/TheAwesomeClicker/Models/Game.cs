@@ -4,21 +4,90 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace TheAwesomeClicker.Models
 {
-    [DataContract]
-    public class Game : IExtensibleDataObject
+    
+    public class Game : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        [DataMember] public double TotalCoin { get; set; }
+        private double totalCoin = 0;
 
-        [DataMember] public double PerSecondAmount { get; set; }
+        public double TotalCoin
+        {
+            get { return totalCoin; }
+            set
+            {
+                totalCoin = value;
+                FieldChanged();
+            }
+        }
 
-        [DataMember] public double IdleAmount { get; set; }
-        
-        [DataMember] public List<Upgrade> UpgradesList { get; set; }
-        public ExtensionDataObject ExtensionData { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private double perSecondAmount = 0;
+
+        public double PerSecondAmount
+        {
+            get
+            {
+                return perSecondAmount;
+            }
+            set
+            {
+                perSecondAmount = value;
+                FieldChanged();
+            }
+        }
+
+
+        private double clickAmount = 1;
+
+        public double ClickAmount
+        {
+            get { return clickAmount; }
+            set
+            {
+                clickAmount = value;
+                FieldChanged();
+            }
+        }
+
+        private List<Upgrade> upgradeList = new List<Upgrade>() { new Upgrade("test upgrade", 10, "", 10)};
+
+        public List<Upgrade> UpgradesList
+        {
+            get
+            {
+                return upgradeList;
+            }
+            set
+            {
+                upgradeList = value;
+                FieldChanged();
+            }
+        }
+
+        protected void FieldChanged([CallerMemberName] string field = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(field));
+        }
+
+        public void CanAfford(Upgrade toBuy)
+        {
+            if(toBuy.Cost < TotalCoin && !toBuy.IsBought)
+            {
+                BuyUpgrade(toBuy);
+            }
+        }
+
+        public void BuyUpgrade(Upgrade toBuy)
+        {
+            TotalCoin -= toBuy.Cost;
+            toBuy.IsBought = true;
+            ClickAmount += toBuy.ChangeValue;
+        }
     }
 }

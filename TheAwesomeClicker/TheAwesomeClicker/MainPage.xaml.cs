@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization.Json;
-using System.Xml.Serialization;
 using TheAwesomeClicker.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -25,9 +21,8 @@ namespace TheAwesomeClicker
 {
     public sealed partial class MainPage : Page
     {
-        static Game game;
-        StorageFolder folder = ApplicationData.Current.LocalFolder;
-        public DataContractSerializer js = new DataContractSerializer(typeof(Game));
+        Game game;
+        //BinaryFormatter bf = new BinaryFormatter();
         public MainPage()
         {
             
@@ -37,28 +32,31 @@ namespace TheAwesomeClicker
                 
             };
             upgradesListBox.ItemsSource = game.UpgradesList;
+            foreach (Upgrade up in game.UpgradesList) up.Tapped += Up_Tapped;
+        }
+
+        private void Up_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            game.CanAfford((Upgrade)sender);
         }
 
         private void Clicker_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            game.TotalCoin += game.ClickAmount;
         }
 
         public async void SaveGame(object sender, RoutedEventArgs e)
         {
-            StorageFile f = await folder.CreateFileAsync("sgd.xml", CreationCollisionOption.ReplaceExisting);
-            
-            //js.WriteObject(f, game);
-            //FileStream f = new FileStream("../sgd.xml", FileMode.Create);
-
+            //FileStream f = new FileStream("sgd.dat", FileMode.Create);
+            //bf.Serialize(f, game);
+            //f.Close();
         }
 
         public void LoadGame(object sender, RoutedEventArgs e)
         {
-
-            FileStream f = new FileStream("sgd.xml", FileMode.Open);
-            game = (Game)js.ReadObject(f);
-            f.Close();
+            //FileStream f = new FileStream("sgd.dat", FileMode.Open);
+            //game = (Game)bf.Deserialize(f);
+            //f.Close();
         }
 
         //public async void LoadGame(object sender, RoutedEventArgs e)
