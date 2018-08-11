@@ -8,8 +8,8 @@ using Windows.UI.Xaml.Controls;
 
 namespace TheAwesomeClicker.Models
 {
-    [DataContract]
-    public class Upgrade : Button, IExtensibleDataObject
+    
+    public class Upgrade : Button
     {
         public Upgrade(string name, int changeValue, string iconPath, double cost, bool IsBought = false)
         {
@@ -23,33 +23,29 @@ namespace TheAwesomeClicker.Models
 
         private int changeValue;
 
-        }
-
-       [IgnoreDataMember] private int changeValue;
-
-        [DataMember] public int ChangeValue
+        public int ChangeValue
         {
             get { return changeValue; }
             set { changeValue = value; }
         }
 
-        [IgnoreDataMember] private bool isBought;
+        private bool isBought;
 
-        [DataMember] public bool IsBought
+        public bool IsBought
         {
             get { return isBought; }
             set { isBought = value; }
         }
 
-        [IgnoreDataMember] private string title;
+        private string title;
 
-        [DataMember] public string Title
+        public string Title
         {
             get { return title; }
             set { title = value; }
         }
 
-        [IgnoreDataMember] private string iconPath;
+        private string iconPath;
 
         public string IconPath
         {
@@ -57,14 +53,13 @@ namespace TheAwesomeClicker.Models
             set { iconPath = value; }
         }
 
-        [IgnoreDataMember] private double cost;
+        private double cost;
 
-        [DataMember] public double Cost
+        public double Cost
         {
             get { return cost; }
             set { cost = value; }
         }
-
-        public ExtensionDataObject ExtensionData { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        
     }
 }
