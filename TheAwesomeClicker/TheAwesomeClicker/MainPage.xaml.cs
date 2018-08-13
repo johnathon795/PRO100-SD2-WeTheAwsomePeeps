@@ -74,6 +74,10 @@ namespace TheAwesomeClicker
 
         }
 
+        private void MuteAudio(object sender, RoutedEventArgs e)
+        {
+            mp.IsMuted = !mp.IsMuted;
+        }
     }
 
 }

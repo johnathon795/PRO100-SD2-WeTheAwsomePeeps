@@ -18,6 +18,7 @@
             <RowDefinition Height="96*" />
         </Grid.RowDefinitions>
         <CommandBar Grid.ColumnSpan="2" Background="LightGray">
+            <AppBarButton Click="MuteAudio" Icon="Mute" />
             <AppBarButton Click="SaveGame" Icon="Save"/>
             <AppBarButton Click="LoadGame" Icon="Upload" />
         </CommandBar>
