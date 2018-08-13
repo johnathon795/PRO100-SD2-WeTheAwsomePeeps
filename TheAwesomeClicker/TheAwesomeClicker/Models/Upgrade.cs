@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
 namespace TheAwesomeClicker.Models
 {
+    
     public class Upgrade : Button
     {
         public Upgrade(string name, int changeValue, string iconPath, double cost, bool IsBought = false)
@@ -58,6 +60,6 @@ namespace TheAwesomeClicker.Models
             get { return cost; }
             set { cost = value; }
         }
-
+        
     }
 }
