@@ -34,11 +34,11 @@
                  Fill="Black" Grid.Column="0" Tapped="Clicker_Tapped"/>
 
         <!-- Elements to be placed under right grid column (1) -->
-        <StackPanel x:Name="upgradesPanel" Grid.Column="1" Grid.ColumnSpan="1" Background="Green">
-            <ListBox x:Name="upgradesListBox" >
+        <RelativePanel x:Name="upgradesPanel" Grid.Column="1" Background="Green">
+            <ListBox x:Name="upgradesListBox" RelativePanel.AlignLeftWithPanel="True">
                 
             </ListBox>
-        </StackPanel>
+        </RelativePanel>
         
     </Grid>
 </Page>

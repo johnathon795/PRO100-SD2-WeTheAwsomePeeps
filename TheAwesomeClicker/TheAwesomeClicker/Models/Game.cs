@@ -55,7 +55,7 @@ namespace TheAwesomeClicker.Models
             }
         }
 
-        private List<Upgrade> upgradeList = new List<Upgrade>() { new Upgrade("test upgrade", 10, "", 10)};
+        private List<Upgrade> upgradeList = new List<Upgrade>() { new Upgrade("test upgrade", 10, "", 10), new Upgrade("test upgrade 2", 10, "", 10) };
 
         public List<Upgrade> UpgradesList
         {
