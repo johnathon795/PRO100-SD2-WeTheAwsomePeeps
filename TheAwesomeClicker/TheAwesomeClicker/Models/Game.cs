@@ -56,19 +56,6 @@ namespace TheAwesomeClicker.Models
 
         private List<Upgrade> upgradeList = new List<Upgrade>() { new Upgrade("test upgrade", 10, "", 10), new Upgrade("test upgrade 2", 10, "", 10) };
 
-        public List<Upgrade> UpgradesList
-        {
-            get
-            {
-                return upgradeList;
-            }
-            set
-            {
-                upgradeList = value;
-                FieldChanged();
-            }
-        }
-
         protected void FieldChanged([CallerMemberName] string field = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(field));

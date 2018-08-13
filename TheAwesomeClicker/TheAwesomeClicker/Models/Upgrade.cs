@@ -63,3 +63,6 @@ namespace TheAwesomeClicker.Models
         
     }
 }
+
+            this.Content = $"{Name} Price: {Cost}";
+        }
