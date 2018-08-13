@@ -66,3 +66,6 @@ namespace TheAwesomeClicker.Models
 
             this.Content = $"{Name} Price: {Cost}";
         }
+
+            this.Content = $"{Name} Price: {Cost}";
+        }
