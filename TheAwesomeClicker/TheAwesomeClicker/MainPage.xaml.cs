@@ -46,19 +46,6 @@ namespace TheAwesomeClicker
 
         }
 
-        //private void Update_Coin(object sender, PropertyChangedEventArgs e)
-        //{
-        //    //if (e.PropertyName.Equals("TotalCoin"))
-        //    //{
-        //        //pointsBox.Text = game.TotalCoin.ToString();
-        //    //}
-        //}
-
-        private void Up_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            game.CanAfford((Upgrade)sender);
-        }
-
         private void Clicker_Tapped(object sender, TappedRoutedEventArgs e)
         {
             game.TotalCoin += game.ClickAmount;
