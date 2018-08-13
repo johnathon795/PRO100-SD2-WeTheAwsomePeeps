@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*" />
-            <RowDefinition Height="95*" />
+            <RowDefinition Height="96*" />
         </Grid.RowDefinitions>
         <CommandBar Grid.ColumnSpan="2" Background="LightGray">
             <AppBarButton Click="SaveGame" Icon="Save"/>
