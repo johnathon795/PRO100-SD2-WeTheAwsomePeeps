@@ -76,7 +76,7 @@ namespace TheAwesomeClicker.Models
 
         public void CanAfford(Upgrade toBuy)
         {
-            if(toBuy.Cost < TotalCoin && !toBuy.IsBought)
+            if(toBuy.Cost <= TotalCoin && !toBuy.IsBought)
             {
                 BuyUpgrade(toBuy);
             }
