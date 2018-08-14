@@ -6,12 +6,23 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Windows.Media.Playback;
+using Windows.Media.Core;
 
 namespace TheAwesomeClicker.Models
 {
     
     public class Game : INotifyPropertyChanged
     {
+
+        public MediaPlayer mp = new MediaPlayer()
+        {
+            Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Kaching.wav")),
+            AudioCategory = MediaPlayerAudioCategory.GameMedia,
+            Volume = 1,
+            IsLoopingEnabled = false
+        };
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private double totalCoin = 0;
@@ -87,6 +98,7 @@ namespace TheAwesomeClicker.Models
             TotalCoin -= toBuy.Cost;
             toBuy.IsBought = true;
             ClickAmount += toBuy.ChangeValue;
+            mp.Play();
         }
     }
 }
