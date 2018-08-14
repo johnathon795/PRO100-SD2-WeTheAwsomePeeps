@@ -46,6 +46,11 @@ namespace TheAwesomeClicker
 
         }
 
+        private void Up_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            game.CanAfford((Upgrade)sender);
+        }
+
         private void Clicker_Tapped(object sender, TappedRoutedEventArgs e)
         {
             game.TotalCoin += game.ClickAmount;
