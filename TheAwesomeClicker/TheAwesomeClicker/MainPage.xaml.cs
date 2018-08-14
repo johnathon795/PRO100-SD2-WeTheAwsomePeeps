@@ -46,14 +46,6 @@ namespace TheAwesomeClicker
 
         }
 
-        //private void Update_Coin(object sender, PropertyChangedEventArgs e)
-        //{
-        //    //if (e.PropertyName.Equals("TotalCoin"))
-        //    //{
-        //        //pointsBox.Text = game.TotalCoin.ToString();
-        //    //}
-        //}
-
         private void Up_Tapped(object sender, TappedRoutedEventArgs e)
         {
             game.CanAfford((Upgrade)sender);
@@ -74,6 +66,10 @@ namespace TheAwesomeClicker
 
         }
 
+        private void MuteAudio(object sender, RoutedEventArgs e)
+        {
+            mp.IsMuted = !mp.IsMuted;
+        }
     }
 
 }

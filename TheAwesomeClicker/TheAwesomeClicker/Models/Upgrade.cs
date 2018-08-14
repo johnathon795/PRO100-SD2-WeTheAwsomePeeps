@@ -1,9 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.UI.Xaml.Controls;
 
 namespace TheAwesomeClicker.Models
@@ -20,7 +22,7 @@ namespace TheAwesomeClicker.Models
             this.IsBought = IsBought;
             this.Content = $"{Name} Price: {Cost}";
         }
-
+        
         private int changeValue;
 
         public int ChangeValue

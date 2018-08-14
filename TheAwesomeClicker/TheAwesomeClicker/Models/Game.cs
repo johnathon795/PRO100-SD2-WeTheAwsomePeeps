@@ -6,12 +6,23 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Windows.Media.Playback;
+using Windows.Media.Core;
 
 namespace TheAwesomeClicker.Models
 {
     
     public class Game : INotifyPropertyChanged
     {
+
+        public MediaPlayer mp = new MediaPlayer()
+        {
+            Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Kaching.wav")),
+            AudioCategory = MediaPlayerAudioCategory.GameMedia,
+            Volume = 1,
+            IsLoopingEnabled = false
+        };
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private double totalCoin = 0;
@@ -54,7 +65,7 @@ namespace TheAwesomeClicker.Models
             }
         }
 
-        private List<Upgrade> upgradeList = new List<Upgrade>() { new Upgrade("test upgrade", 10, "", 10)};
+        private List<Upgrade> upgradeList = new List<Upgrade>() { new Upgrade("test upgrade", 10, "", 10), new Upgrade("test upgrade 2", 10, "", 10) };
 
         public List<Upgrade> UpgradesList
         {
@@ -76,7 +87,7 @@ namespace TheAwesomeClicker.Models
 
         public void CanAfford(Upgrade toBuy)
         {
-            if(toBuy.Cost < TotalCoin && !toBuy.IsBought)
+            if(toBuy.Cost <= TotalCoin && !toBuy.IsBought)
             {
                 BuyUpgrade(toBuy);
             }
@@ -87,6 +98,7 @@ namespace TheAwesomeClicker.Models
             TotalCoin -= toBuy.Cost;
             toBuy.IsBought = true;
             ClickAmount += toBuy.ChangeValue;
+            mp.Play();
         }
     }
 }
