@@ -13,13 +13,13 @@ namespace TheAwesomeClicker.Models
     
     public class Upgrade : Button
     {
-        public Upgrade(string name, int changeValue, string iconPath, double cost, bool IsBought = false)
+        public Upgrade(string name, int changeValue, string iconPath, double cost, bool isBought = false)
         {
             Name = name;
             ChangeValue = changeValue;
             IconPath = iconPath;
             Cost = cost;
-            this.IsBought = IsBought;
+            this.IsBought = isBought;
             this.Content = $"{Name} Price: {Cost}";
         }
         
