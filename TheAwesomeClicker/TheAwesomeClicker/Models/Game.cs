@@ -8,25 +8,32 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.Media.Playback;
 using Windows.Media.Core;
+using System.Collections.ObjectModel;
+using ProtoBuf;
 
 namespace TheAwesomeClicker.Models
 {
-    
+    [ProtoContract]
     public class Game : INotifyPropertyChanged
     {
 
-        public MediaPlayer mp = new MediaPlayer()
+
+        [ProtoMember(1)]
+        public List<MediaPlayer> AudioPlayers = new List<MediaPlayer>();
+
+        private MediaPlayer boughtUpgrade = new MediaPlayer()
         {
             Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Kaching.wav")),
             AudioCategory = MediaPlayerAudioCategory.GameMedia,
             Volume = 1,
             IsLoopingEnabled = false
         };
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private double totalCoin = 0;
 
+        [ProtoMember(2)]
         public double TotalCoin
         {
             get { return totalCoin; }
@@ -39,6 +46,7 @@ namespace TheAwesomeClicker.Models
 
         private double perSecondAmount = 0;
 
+        [ProtoMember(3)]
         public double PerSecondAmount
         {
             get
@@ -55,6 +63,7 @@ namespace TheAwesomeClicker.Models
 
         private double clickAmount = 1;
 
+        [ProtoMember(4)]
         public double ClickAmount
         {
             get { return clickAmount; }
@@ -65,9 +74,9 @@ namespace TheAwesomeClicker.Models
             }
         }
 
-        private List<Upgrade> upgradeList = new List<Upgrade>() { new Upgrade("test upgrade", 10, "", 10), new Upgrade("test upgrade 2", 10, "", 10) };
+        private ObservableCollection<Upgrade> upgradeList = new ObservableCollection<Upgrade>() { new Upgrade("test upgrade", 10, "Assets/Logo.png", 10), new Upgrade("test upgrade 2", 10, "Assets/Logo.png", 10) };
 
-        public List<Upgrade> UpgradesList
+        [ProtoMember(5)] public ObservableCollection<Upgrade> UpgradesList
         {
             get
             {
@@ -78,6 +87,10 @@ namespace TheAwesomeClicker.Models
                 upgradeList = value;
                 FieldChanged();
             }
+        }
+        public Game() 
+        {
+            AudioPlayers.Add(boughtUpgrade);
         }
 
         protected void FieldChanged([CallerMemberName] string field = null)
@@ -98,7 +111,7 @@ namespace TheAwesomeClicker.Models
             TotalCoin -= toBuy.Cost;
             toBuy.IsBought = true;
             ClickAmount += toBuy.ChangeValue;
-            mp.Play();
+            boughtUpgrade.Play();
         }
     }
 }
