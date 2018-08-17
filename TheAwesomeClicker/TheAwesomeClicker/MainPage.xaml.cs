@@ -71,7 +71,7 @@ namespace TheAwesomeClicker
             upgradesListBox.ItemsSource = game;
         }
 
-        public async void DeleteSave()
+        public async void DeleteSave(object sender, RoutedEventArgs e)
         {
             await (await def.GetFileAsync("sgd.dat")).DeleteAsync();
         }
