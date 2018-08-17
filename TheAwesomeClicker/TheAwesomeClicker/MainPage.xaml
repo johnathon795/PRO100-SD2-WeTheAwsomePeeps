@@ -17,6 +17,20 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="95*" />
         </Grid.RowDefinitions>
+
+        <CommandBar Grid.ColumnSpan="2" >
+            <AppBarButton Icon="Upload" Click="LoadGame" />
+            <AppBarButton Icon="Save" Click="SaveGame" />
+            <AppBarButton Icon="Mute" Click="MuteAudio" />
+            <AppBarButton Icon="More">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Delete Save File" Click="DeleteSave" />
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+        </CommandBar>
+
         <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
                    Text="Total Coin :" FontSize="24" Margin="5 20"/>
         <TextBlock x:Name="rateBox" 
@@ -37,7 +51,7 @@
 
         <Ellipse x:Name="clicker" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  
                  Width="300" Height="300" 
-                 Fill="Black" Grid.Column="0" Tapped="Clicker_Tapped"/>
+                 Fill="Black" Grid.Column="0" PointerReleased="Clicker_Tapped"/>
 
         <!-- Elements to be placed under right grid column (1) -->
         <StackPanel x:Name="upgradesPanel" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="Green">
