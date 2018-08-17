@@ -131,8 +131,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Google.Protobuf">
+      <Version>3.6.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.5</Version>
+      <Version>6.1.7</Version>
     </PackageReference>
     <PackageReference Include="protobuf-net">
       <Version>2.3.17</Version>

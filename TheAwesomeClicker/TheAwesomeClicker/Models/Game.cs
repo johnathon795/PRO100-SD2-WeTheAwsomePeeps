@@ -113,5 +113,14 @@ namespace TheAwesomeClicker.Models
             ClickAmount += toBuy.ChangeValue;
             boughtUpgrade.Play();
         }
+
+        public void MakeUpgrade()
+        {
+            UpgradesList.Add(new Upgrade("CoalMine",15,"",100));
+            UpgradesList.Add(new Upgrade("MineCart", 50, "", 10000));
+            UpgradesList.Add(new Upgrade("IronMine", 200, "", 100000));
+            UpgradesList.Add(new Upgrade("TNT", 1000, "", 500000));
+            UpgradesList.Add(new Upgrade("GoldMine", 2500, "", 1000000));
+        }
     }
 }
