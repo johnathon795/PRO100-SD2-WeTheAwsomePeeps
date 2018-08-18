@@ -109,8 +109,20 @@
     <None Include="TheAwesomeClicker_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Background.png" />
+    <Content Include="Assets\Background1.png" />
+    <Content Include="Assets\Background2.png" />
+    <Content Include="Assets\Diamond.png" />
+    <Content Include="Assets\Drill.png" />
+    <Content Include="Assets\Drill2.png" />
     <Content Include="Assets\Kaching.wav" />
+    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\MineCart.png" />
+    <Content Include="Assets\MineCart2.png" />
+    <Content Include="Assets\Stone.png" />
     <Content Include="Assets\Theme.wav" />
+    <Content Include="Assets\TnT.png" />
+    <Content Include="Assets\TnT2.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
