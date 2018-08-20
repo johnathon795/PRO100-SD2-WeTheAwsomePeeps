@@ -12,6 +12,7 @@ using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
 using System.Threading.Tasks;
 using ProtoBuf;
+using System.Collections.ObjectModel;
 
 namespace TheAwesomeClicker
 {
@@ -31,15 +32,19 @@ namespace TheAwesomeClicker
 
         public MainPage()
         {
-
             this.InitializeComponent();
-            game = new Game()
+            LoadGame(null, null);
+            if (game == null)
             {
-
-            };
+                game = new Game()
+                {
+                    UpgradesList = new ObservableCollection<Upgrade>()
+                };
+                game.MakeUpgrade();
+            }
+            
             upgradesListBox.ItemsSource = game.UpgradesList;
             foreach (Upgrade up in game.UpgradesList) up.Tapped += Up_Tapped;
-
             mp.Play();
 
         }
@@ -60,7 +65,7 @@ namespace TheAwesomeClicker
             IRandomAccessStream iras = await f?.OpenAsync(FileAccessMode.ReadWrite);
             iras.Size = 0;
             using (Stream s = Task.Run(() => iras.AsStreamForWrite()).Result) Serializer.Serialize(s, game);
-            //SaveCard.Begin();
+            SaveCard.Begin();
         }
 
         public async void LoadGame(object sender, RoutedEventArgs e)
@@ -69,7 +74,8 @@ namespace TheAwesomeClicker
             FileInfo fi = new FileInfo(def.Path + "\\sgd.dat");
             f = fi.Exists ? await def.GetFileAsync("sgd.dat") : await def.CreateFileAsync("sgd.dat");
             using (Stream s = await f?.OpenStreamForReadAsync()) game = Serializer.Deserialize<Game>(s);
-            upgradesListBox.ItemsSource = game;
+            upgradesListBox.ItemsSource = game.UpgradesList;
+            if (fi.Length == 0) game = null;
         }
 
         public async void DeleteSave(object sender, RoutedEventArgs e)

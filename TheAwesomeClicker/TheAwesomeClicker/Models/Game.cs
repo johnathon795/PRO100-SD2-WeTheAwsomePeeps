@@ -18,22 +18,17 @@ namespace TheAwesomeClicker.Models
     {
 
 
-        [ProtoMember(1)]
-        public List<MediaPlayer> AudioPlayers = new List<MediaPlayer>();
+        [ProtoIgnore]
+        public List<MediaPlayer> AudioPlayers;
 
-        private MediaPlayer boughtUpgrade = new MediaPlayer()
-        {
-            Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Kaching.wav")),
-            AudioCategory = MediaPlayerAudioCategory.GameMedia,
-            Volume = 1,
-            IsLoopingEnabled = false
-        };
+        [ProtoIgnore]
+        private MediaPlayer boughtUpgrade;
         
         public event PropertyChangedEventHandler PropertyChanged;
 
         private double totalCoin = 0;
 
-        [ProtoMember(2)]
+        [ProtoMember(1)]
         public double TotalCoin
         {
             get { return totalCoin; }
@@ -46,7 +41,7 @@ namespace TheAwesomeClicker.Models
 
         private double perSecondAmount = 0;
 
-        [ProtoMember(3)]
+        [ProtoMember(2)]
         public double PerSecondAmount
         {
             get
@@ -63,7 +58,7 @@ namespace TheAwesomeClicker.Models
 
         private double clickAmount = 1;
 
-        [ProtoMember(4)]
+        [ProtoMember(3)]
         public double ClickAmount
         {
             get { return clickAmount; }
@@ -76,7 +71,7 @@ namespace TheAwesomeClicker.Models
 
         private ObservableCollection<Upgrade> upgradeList = new ObservableCollection<Upgrade>() { new Upgrade("test upgrade", 10, "ms-appx:///Assets/Logo.png", 10), new Upgrade("test upgrade 2", 10, "ms-appx:///Assets/stone.png", 10) };
 
-        [ProtoMember(5)] public ObservableCollection<Upgrade> UpgradesList
+        [ProtoMember(4)] public ObservableCollection<Upgrade> UpgradesList
         {
             get
             {
@@ -90,6 +85,14 @@ namespace TheAwesomeClicker.Models
         }
         public Game() 
         {
+            this.AudioPlayers = new List<MediaPlayer>();
+            this.boughtUpgrade = new MediaPlayer()
+            {
+                Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Kaching.wav")),
+                AudioCategory = MediaPlayerAudioCategory.GameMedia,
+                Volume = 1,
+                IsLoopingEnabled = false
+            };
             AudioPlayers.Add(boughtUpgrade);
         }
 
@@ -116,7 +119,7 @@ namespace TheAwesomeClicker.Models
 
         public void MakeUpgrade()
         {
-            UpgradesList.Add(new Upgrade("CoalMine",15,"",100));
+            UpgradesList.Add(new Upgrade("CoalMine", 15, "", 100) { Name="test"});
             UpgradesList.Add(new Upgrade("MineCart", 50, "", 10000));
             UpgradesList.Add(new Upgrade("IronMine", 200, "", 100000));
             UpgradesList.Add(new Upgrade("TNT", 1000, "", 500000));

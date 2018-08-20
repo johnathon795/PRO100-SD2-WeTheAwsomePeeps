@@ -1,3 +1,4 @@
+using ProtoBuf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace TheAwesomeClicker.Models
 {
-    
+    [ProtoContract]
     public class Upgrade : Button
     {
         public Upgrade(string name, int changeValue, string iconPath, double cost, bool isBought = false)
@@ -37,9 +38,15 @@ namespace TheAwesomeClicker.Models
             panel.Children.Add(text);
             Content = panel;
         }
+
+        public Upgrade()
+        {
+            
+            this.Content = $"{Name} Price: {Cost}";
+        }
         
         private int changeValue;
-
+        [ProtoMember(1)]
         public int ChangeValue
         {
             get { return changeValue; }
@@ -47,7 +54,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private bool isBought;
-
+        [ProtoMember(2)]
         public bool IsBought
         {
             get { return isBought; }
@@ -55,7 +62,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private string title;
-
+        [ProtoMember(3)]
         public string Title
         {
             get { return title; }
@@ -63,7 +70,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private string iconPath;
-
+        [ProtoMember(4)]
         public string IconPath
         {
             get { return iconPath; }
@@ -71,7 +78,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private double cost;
-
+        [ProtoMember(5)]
         public double Cost
         {
             get { return cost; }

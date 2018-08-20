@@ -31,6 +31,24 @@
             </AppBarButton>
         </CommandBar>
 
+        <Border Name="BorderBox" Grid.Column="0" Grid.Row="1" Width="250" VerticalAlignment="Top" Visibility="Visible" HorizontalAlignment="left" Background="Green" Margin="0, 100">
+            <TextBlock x:Name="PopupTextBlock" TextWrapping="Wrap" Foreground="Black" Text="Save Successful" FontSize="20" VerticalAlignment="Center" TextAlignment="Center" Margin="20" />
+            <Border.RenderTransform>
+                <CompositeTransform x:Name="slide" TranslateX="-250" />
+            </Border.RenderTransform>
+            <Border.Resources>
+                <Storyboard x:Name="SaveCard">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slide" Storyboard.TargetProperty="TranslateX">
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="-250" />
+                        <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0" />
+                        <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0" />
+                        <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="-250" />
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </Border.Resources>
+
+        </Border>
+
         <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
                    Text="Total Coin :" FontSize="24" Margin="5 20"/>
         <TextBlock x:Name="rateBox" 
