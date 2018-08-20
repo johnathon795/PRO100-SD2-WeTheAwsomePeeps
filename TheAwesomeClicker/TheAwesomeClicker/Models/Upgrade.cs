@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace TheAwesomeClicker.Models
 {
@@ -20,7 +21,21 @@ namespace TheAwesomeClicker.Models
             IconPath = iconPath;
             Cost = cost;
             this.IsBought = isBought;
-            this.Content = $"{Name} Price: {Cost}";
+            StackPanel panel = new StackPanel();
+            Image image = new Image()
+            {
+                Source = new BitmapImage(new Uri(IconPath))
+                {
+                    DecodePixelWidth = 100
+                }
+            };
+            TextBlock text = new TextBlock()
+            {
+                Text = $"{Name} Price: {Cost}"
+            };
+            panel.Children.Add(image);
+            panel.Children.Add(text);
+            Content = panel;
         }
         
         private int changeValue;

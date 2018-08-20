@@ -55,9 +55,29 @@
 
         <!-- Elements to be placed under right grid column (1) -->
         <StackPanel x:Name="upgradesPanel" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="Green">
-            <ListBox x:Name="upgradesListBox" >
-
+            
+            <ListBox x:Name="upgradesListBox">
+                
+                <!--<ListView.ItemTemplate>
+                    
+                    <DataTemplate>
+                        
+                        <StackPanel x:Name="HorizotalPanel" Orientation="Horizontal">
+                            
+                            <TextBlock Text="{Binding Upgrade}" TextWrapping="NoWrap"/>
+                            <TextBlock Text="{Binding Upgrade}" TextWrapping="NoWrap"/>
+                            <TextBlock Text="{Binding Upgrade}" MaxHeight="60"/>
+                            <StackPanel x:Name="VerticalPanel" Orientation="Vertical">
+                                
+                            </StackPanel>
+                        </StackPanel>
+                        
+                    </DataTemplate>
+                    
+                </ListView.ItemTemplate>-->
+                
             </ListBox>
+            
         </StackPanel>
 
     </Grid>

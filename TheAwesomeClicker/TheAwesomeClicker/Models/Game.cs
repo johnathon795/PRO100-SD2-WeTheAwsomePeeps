@@ -74,7 +74,7 @@ namespace TheAwesomeClicker.Models
             }
         }
 
-        private ObservableCollection<Upgrade> upgradeList = new ObservableCollection<Upgrade>() { new Upgrade("test upgrade", 10, "Assets/Logo.png", 10), new Upgrade("test upgrade 2", 10, "Assets/Logo.png", 10) };
+        private ObservableCollection<Upgrade> upgradeList = new ObservableCollection<Upgrade>() { new Upgrade("test upgrade", 10, "ms-appx:///Assets/Logo.png", 10), new Upgrade("test upgrade 2", 10, "ms-appx:///Assets/stone.png", 10) };
 
         [ProtoMember(5)] public ObservableCollection<Upgrade> UpgradesList
         {
