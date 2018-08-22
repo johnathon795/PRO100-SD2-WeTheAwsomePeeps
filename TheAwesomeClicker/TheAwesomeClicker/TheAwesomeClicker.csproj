@@ -120,10 +120,10 @@
     <Content Include="Assets\Drill.png" />
     <Content Include="Assets\Drill2.png" />
     <Content Include="Assets\Kaching.wav" />
-    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\Iron.png" />
     <Content Include="Assets\MineCart.png" />
     <Content Include="Assets\MineCart2.png" />
-    <Content Include="Assets\Stone.png" />
+    <Content Include="Assets\Logo.png" />
     <Content Include="Assets\Theme.wav" />
     <Content Include="Assets\TnT.png" />
     <Content Include="Assets\TnT2.png" />

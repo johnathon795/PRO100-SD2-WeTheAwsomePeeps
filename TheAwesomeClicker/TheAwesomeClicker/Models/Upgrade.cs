@@ -15,7 +15,7 @@ namespace TheAwesomeClicker.Models
     [ProtoContract]
     public class Upgrade
     {
-        public Upgrade(string name, ulong changeValue, string iconPath, ulong cost, bool isBought = false, bool isBackground = false)
+        public Upgrade(string name, ulong changeValue, string iconPath, ulong cost, bool isBought = false, bool isBackground = false, bool isAxe = false)
         {
             this.Title = name;
             this.ChangeValue = changeValue;
@@ -23,6 +23,7 @@ namespace TheAwesomeClicker.Models
             this.Cost = cost;
             this.IsBought = isBought;
             this.IsBackground = isBackground;
+            this.IsAxe = isAxe;
         }
 
         public Upgrade()
@@ -76,6 +77,14 @@ namespace TheAwesomeClicker.Models
         {
             get { return isBackground; }
             set { isBackground = value; }
+        }
+
+        private bool isAxe;
+        [ProtoMember(7)]
+        public bool IsAxe
+        {
+            get { return isAxe; }
+            set { isAxe = value; }
         }
 
     }

@@ -7,18 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="66*"/>
             <ColumnDefinition Width="33*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="95*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="96*" />
         </Grid.RowDefinitions>
 
-        <CommandBar Grid.ColumnSpan="2" >
+        <CommandBar Grid.ColumnSpan="2">
             <AppBarButton Icon="Upload" Click="LoadGame" />
             <AppBarButton Icon="Save" Click="SaveGame" />
             <AppBarButton Icon="Mute" Click="MuteAudio" />
@@ -68,40 +68,70 @@
                    FontSize="24" 
                    Text="{x:Bind game.ClickAmount, Mode=TwoWay}" 
                    Margin="205 20"/>
+        
+        <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel.Resources>
+                
+                <Storyboard x:Name="Storyboard">
 
-        <Ellipse x:Name="clicker" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  
-                 Width="300" Height="300" 
-                 Fill="Black" Grid.Column="0" PointerReleased="Clicker_Tapped"/>
+                    <DoubleAnimation Storyboard.TargetName="elipseScaleTransform" 
+                                     Storyboard.TargetProperty="ScaleX" 
+                                     To=".8" Duration="0:0:0.05" AutoReverse="True"/>
+                    
+                    <DoubleAnimation Storyboard.TargetName="elipseScaleTransform" 
+                                     Storyboard.TargetProperty="ScaleY"
+                                     To=".8" Duration="0:0:0.05" AutoReverse="True"/>
+
+                </Storyboard>
+                
+            </StackPanel.Resources>
+            
+            <Image x:Name="clicker" Source="{x:Bind game.Clicker, Mode=OneWay}"
+                     HorizontalAlignment="Center" VerticalAlignment="Center"  
+                     Width="300" Height="300" 
+                     Grid.Column="0" PointerReleased="Clicker_Tapped">
+                
+                <Image.RenderTransform>
+                    
+                    <ScaleTransform x:Name="elipseScaleTransform"/>
+                    
+                </Image.RenderTransform>
+                
+            </Image>
+            
+        </StackPanel>
         
         <!-- Elements to be placed under right grid column (1) -->
-        <Grid x:Name="upgradesPanel" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Background="Green">
-            
+        <Grid x:Name="upgradesPanel" 
+              Grid.Column="1" Grid.Row="1" 
+              Grid.ColumnSpan="1" Background="Wheat">
+
             <ListView x:Name="upgradesListView" Tapped="Up_Tapped" IsEnabled="True">
-                
+
                 <ListView.ItemTemplate>
-                    
+
                     <DataTemplate Control.IsTemplateKeyTipTarget="False">
 
                         <StackPanel Orientation="Horizontal">
-                            
+
                             <Image Source="{Binding IconPath}" VerticalAlignment="Center" Margin="5 10"/>
-                            
+
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
 
                                 <TextBlock Text="{Binding Title}" FontSize="22" FontWeight="Medium" Margin="30 10"/>
                                 <TextBlock Text="{Binding Cost}" FontSize="22" FontWeight="Medium" Margin="30 0"/>
-                                
+
                             </StackPanel>
                         </StackPanel>
-                        
+
                     </DataTemplate>
-                    
+
                 </ListView.ItemTemplate>
-                
+
             </ListView>
-            
+
         </Grid>
 
     </Grid>
-        
+
 </Page>

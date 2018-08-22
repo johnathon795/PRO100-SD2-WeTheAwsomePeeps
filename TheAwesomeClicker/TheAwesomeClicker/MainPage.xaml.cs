@@ -67,6 +67,7 @@ namespace TheAwesomeClicker
         private void Clicker_Tapped(object sender, PointerRoutedEventArgs e)
         {
             game.TotalCoin += game.ClickAmount;
+            Storyboard.Begin();
         }
 
         public async void SaveGame(object sender, RoutedEventArgs e)
@@ -101,6 +102,7 @@ namespace TheAwesomeClicker
                 gmp.IsMuted = !gmp.IsMuted;
             }
         }
+
     }
 
 }

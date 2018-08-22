@@ -93,9 +93,22 @@ namespace TheAwesomeClicker.Models
             set
             {
                 background = value;
-                FieldChanged("Background");
+                FieldChanged();
             }
         }
+
+        private string clicker = "ms-appx:///Assets/Logo.png";
+        [ProtoMember(6)]
+        public string Clicker
+        {
+            get { return clicker; }
+            set
+            {
+                clicker = value;
+                FieldChanged();
+            }
+        }
+
 
         public Game()
         {
@@ -121,10 +134,8 @@ namespace TheAwesomeClicker.Models
             {
                 BuyUpgrade(toBuy);
 
-                if (toBuy.IsBackground)
-                {
-                    Background = toBuy.IconPath.Substring(0, 29) + ".png";
-                }
+                if (toBuy.IsBackground) Background = toBuy.IconPath.Substring(0, 29) + ".png";
+                if (toBuy.IsAxe) Clicker = toBuy.IconPath;
             }
         }
 
@@ -138,12 +149,16 @@ namespace TheAwesomeClicker.Models
 
         public void MakeUpgrade()
         {
-            upgradeList.Add(new Upgrade("test upgrade 2", 10, "ms-appx:///Assets/stone.png", 10));
-            UpgradesList.Add(new Upgrade("test upgrade", 10, "ms-appx:///Assets/Logo.png", 10));
-            UpgradesList.Add(new Upgrade("MineCart", 50, "ms-appx:///Assets/MineCart.png", 10000));
+            UpgradesList.Add(new Upgrade("Iron Pickaxe", 100, "ms-appx:///Assets/Iron.png", 1000, isAxe: true));
+            UpgradesList.Add(new Upgrade("Diamond Pickaxe", 500, "ms-appx:///Assets/Diamond.png", 100000, isAxe: true));
+            UpgradesList.Add(new Upgrade("Wood MineCart", 50, "ms-appx:///Assets/MineCart.png", 100));
+            UpgradesList.Add(new Upgrade("Iron MineCart", 100, "ms-appx:///Assets/MineCart2.png", 1000));
             UpgradesList.Add(new Upgrade("TNT", 1000, "ms-appx:///Assets/TnT.png", 500000));
-            UpgradesList.Add(new Upgrade("CoalMine", 15, "ms-appx:///Assets/Background0_Icon.png", 100, isBackground: true));
-            UpgradesList.Add(new Upgrade("IronMine", 200, "ms-appx:///Assets/Background1_Icon.png", 100000, isBackground: true));
+            UpgradesList.Add(new Upgrade("TNT", 1500, "ms-appx:///Assets/TnT2.png", 5000000));
+            UpgradesList.Add(new Upgrade("Drill", 1500, "ms-appx:///Assets/Drill.png", 5000000));
+            UpgradesList.Add(new Upgrade("Diamond Bit Drill", 1500, "ms-appx:///Assets/Drill2.png", 5000000));
+            UpgradesList.Add(new Upgrade("CoalMine", 19, "ms-appx:///Assets/Background0_Icon.png", 100, isBackground: true));
+            UpgradesList.Add(new Upgrade("IronMine", 250, "ms-appx:///Assets/Background1_Icon.png", 100000, isBackground: true));
             UpgradesList.Add(new Upgrade("GoldMine", 2500, "ms-appx:///Assets/Background2_Icon.png", 1000000, isBackground: true));
         }
     }
