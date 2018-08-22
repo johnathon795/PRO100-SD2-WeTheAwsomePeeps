@@ -17,13 +17,12 @@ namespace TheAwesomeClicker.Models
     public class Game : INotifyPropertyChanged
     {
 
-
         [ProtoIgnore]
         public List<MediaPlayer> AudioPlayers;
 
         [ProtoIgnore]
         private MediaPlayer boughtUpgrade;
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private ulong totalCoin = 0;
@@ -71,7 +70,8 @@ namespace TheAwesomeClicker.Models
 
         private ObservableCollection<Upgrade> upgradeList = new ObservableCollection<Upgrade>();
 
-        [ProtoMember(4)] public ObservableCollection<Upgrade> UpgradesList
+        [ProtoMember(4)]
+        public ObservableCollection<Upgrade> UpgradesList
         {
             get
             {
@@ -83,7 +83,21 @@ namespace TheAwesomeClicker.Models
                 FieldChanged();
             }
         }
-        public Game() 
+
+        private string background = "ms-appx:///Assets/DefaultBackground.png";
+
+        [ProtoMember(5)]
+        public string Background
+        {
+            get { return background; }
+            set
+            {
+                background = value;
+                FieldChanged("Background");
+            }
+        }
+
+        public Game()
         {
             this.AudioPlayers = new List<MediaPlayer>();
             this.boughtUpgrade = new MediaPlayer()
@@ -103,10 +117,14 @@ namespace TheAwesomeClicker.Models
 
         public void CanAfford(Upgrade toBuy)
         {
-            if(toBuy.Cost <= TotalCoin && !toBuy.IsBought)
+            if (toBuy.Cost <= TotalCoin && !toBuy.IsBought)
             {
                 BuyUpgrade(toBuy);
-                
+
+                if (toBuy.IsBackground)
+                {
+                    Background = toBuy.IconPath.Substring(0, 29) + ".png";
+                }
             }
         }
 
@@ -122,11 +140,11 @@ namespace TheAwesomeClicker.Models
         {
             upgradeList.Add(new Upgrade("test upgrade 2", 10, "ms-appx:///Assets/stone.png", 10));
             UpgradesList.Add(new Upgrade("test upgrade", 10, "ms-appx:///Assets/Logo.png", 10));
-            UpgradesList.Add(new Upgrade("CoalMine", 15, "ms-appx:///Assets/Background_Icon.png", 100));
             UpgradesList.Add(new Upgrade("MineCart", 50, "ms-appx:///Assets/MineCart.png", 10000));
-            UpgradesList.Add(new Upgrade("IronMine", 200, "ms-appx:///Assets/Background1_Icon.png", 100000));
             UpgradesList.Add(new Upgrade("TNT", 1000, "ms-appx:///Assets/TnT.png", 500000));
-            UpgradesList.Add(new Upgrade("GoldMine", 2500, "ms-appx:///Assets/Background2_Icon.png", 1000000));
+            UpgradesList.Add(new Upgrade("CoalMine", 15, "ms-appx:///Assets/Background0_Icon.png", 100, isBackground: true));
+            UpgradesList.Add(new Upgrade("IronMine", 200, "ms-appx:///Assets/Background1_Icon.png", 100000, isBackground: true));
+            UpgradesList.Add(new Upgrade("GoldMine", 2500, "ms-appx:///Assets/Background2_Icon.png", 1000000, isBackground: true));
         }
     }
 }

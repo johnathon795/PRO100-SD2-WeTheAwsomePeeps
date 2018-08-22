@@ -42,7 +42,7 @@ namespace TheAwesomeClicker
                 };
                 game.MakeUpgrade();
             }
-            
+            ;
             upgradesListView.ItemsSource = game.UpgradesList;
             mp.Play();
 
@@ -50,9 +50,18 @@ namespace TheAwesomeClicker
 
         private void Up_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            game.CanAfford(game.UpgradesList[((ListView)sender).SelectedIndex]);
-            
-            
+            var selectedItemContainer = (ListViewItem)((ListView)sender).ContainerFromItem(((ListView)sender).SelectedItem);
+            Upgrade selectedUpgrade = game.UpgradesList[((ListView)sender).SelectedIndex];
+
+            game.CanAfford(selectedUpgrade);
+
+            //if ();
+            if (selectedUpgrade.IsBought)
+            {
+                selectedItemContainer.IsEnabled = false;
+                //if (selectedUpgrade.IsBackground) 
+            }
+
         }
 
         private void Clicker_Tapped(object sender, PointerRoutedEventArgs e)

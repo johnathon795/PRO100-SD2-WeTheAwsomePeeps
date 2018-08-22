@@ -15,35 +15,19 @@ namespace TheAwesomeClicker.Models
     [ProtoContract]
     public class Upgrade
     {
-        public Upgrade(string name, ulong changeValue, string iconPath, ulong cost, bool isBought = false)
+        public Upgrade(string name, ulong changeValue, string iconPath, ulong cost, bool isBought = false, bool isBackground = false)
         {
-            Title = name;
-            ChangeValue = changeValue;
-            IconPath = iconPath;
-            Cost = cost;
-            IsBought = isBought;
-            //StackPanel panel = new StackPanel();
-            //Image image = new Image()
-            //{
-            //    Source = new BitmapImage(new Uri(IconPath)),
-            //    Stretch = Windows.UI.Xaml.Media.Stretch.UniformToFill
-            //};
-            //TextBlock text = new TextBlock()
-            //{
-            //    Text = $"{Title} Price: {Cost}"
-
-            //};
-            //panel.Children.Add(image);
-            //panel.Children.Add(text);
-            //Width = 150;
-            //Height = 150;
-            //Content = panel;
+            this.Title = name;
+            this.ChangeValue = changeValue;
+            this.IconPath = iconPath;
+            this.Cost = cost;
+            this.IsBought = isBought;
+            this.IsBackground = isBackground;
         }
 
         public Upgrade()
         {
             
-            //this.Content = $"{Name} Price: {Cost}";
         }
         
         private ulong changeValue;
@@ -85,6 +69,14 @@ namespace TheAwesomeClicker.Models
             get { return cost; }
             set { cost = value; }
         }
-        
+
+        private bool isBackground;
+        [ProtoMember(6)]
+        public bool IsBackground
+        {
+            get { return isBackground; }
+            set { isBackground = value; }
+        }
+
     }
 }
