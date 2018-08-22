@@ -13,41 +13,42 @@ using Windows.UI.Xaml.Media.Imaging;
 namespace TheAwesomeClicker.Models
 {
     [ProtoContract]
-    public class Upgrade : Button
+    public class Upgrade
     {
-        public Upgrade(string name, int changeValue, string iconPath, double cost, bool isBought = false)
+        public Upgrade(string name, ulong changeValue, string iconPath, ulong cost, bool isBought = false)
         {
-            Name = name;
+            Title = name;
             ChangeValue = changeValue;
             IconPath = iconPath;
             Cost = cost;
-            this.IsBought = isBought;
-            StackPanel panel = new StackPanel();
-            Image image = new Image()
-            {
-                Source = new BitmapImage(new Uri(IconPath))
-                {
-                    DecodePixelWidth = 100
-                }
-            };
-            TextBlock text = new TextBlock()
-            {
-                Text = $"{Name} Price: {Cost}"
-            };
-            panel.Children.Add(image);
-            panel.Children.Add(text);
-            Content = panel;
+            IsBought = isBought;
+            //StackPanel panel = new StackPanel();
+            //Image image = new Image()
+            //{
+            //    Source = new BitmapImage(new Uri(IconPath)),
+            //    Stretch = Windows.UI.Xaml.Media.Stretch.UniformToFill
+            //};
+            //TextBlock text = new TextBlock()
+            //{
+            //    Text = $"{Title} Price: {Cost}"
+
+            //};
+            //panel.Children.Add(image);
+            //panel.Children.Add(text);
+            //Width = 150;
+            //Height = 150;
+            //Content = panel;
         }
 
         public Upgrade()
         {
             
-            this.Content = $"{Name} Price: {Cost}";
+            //this.Content = $"{Name} Price: {Cost}";
         }
         
-        private int changeValue;
+        private ulong changeValue;
         [ProtoMember(1)]
-        public int ChangeValue
+        public ulong ChangeValue
         {
             get { return changeValue; }
             set { changeValue = value; }
@@ -77,9 +78,9 @@ namespace TheAwesomeClicker.Models
             set { iconPath = value; }
         }
 
-        private double cost;
+        private ulong cost;
         [ProtoMember(5)]
-        public double Cost
+        public ulong Cost
         {
             get { return cost; }
             set { cost = value; }

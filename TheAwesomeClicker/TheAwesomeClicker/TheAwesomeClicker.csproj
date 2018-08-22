@@ -111,7 +111,10 @@
   <ItemGroup>
     <Content Include="Assets\Background.png" />
     <Content Include="Assets\Background1.png" />
+    <Content Include="Assets\Background1_Icon.png" />
     <Content Include="Assets\Background2.png" />
+    <Content Include="Assets\Background2_Icon.png" />
+    <Content Include="Assets\Background_Icon.png" />
     <Content Include="Assets\Diamond.png" />
     <Content Include="Assets\Drill.png" />
     <Content Include="Assets\Drill2.png" />

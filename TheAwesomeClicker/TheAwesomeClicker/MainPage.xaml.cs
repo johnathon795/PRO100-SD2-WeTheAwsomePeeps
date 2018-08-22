@@ -43,15 +43,16 @@ namespace TheAwesomeClicker
                 game.MakeUpgrade();
             }
             
-            upgradesListBox.ItemsSource = game.UpgradesList;
-            foreach (Upgrade up in game.UpgradesList) up.Tapped += Up_Tapped;
+            upgradesListView.ItemsSource = game.UpgradesList;
             mp.Play();
 
         }
 
         private void Up_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            game.CanAfford((Upgrade)sender);
+            game.CanAfford(game.UpgradesList[((ListView)sender).SelectedIndex]);
+            
+            
         }
 
         private void Clicker_Tapped(object sender, PointerRoutedEventArgs e)
@@ -74,7 +75,7 @@ namespace TheAwesomeClicker
             FileInfo fi = new FileInfo(def.Path + "\\sgd.dat");
             f = fi.Exists ? await def.GetFileAsync("sgd.dat") : await def.CreateFileAsync("sgd.dat");
             using (Stream s = await f?.OpenStreamForReadAsync()) game = Serializer.Deserialize<Game>(s);
-            upgradesListBox.ItemsSource = game.UpgradesList;
+            upgradesListView.ItemsSource = game.UpgradesList;
             if (fi.Length == 0) game = null;
         }
 
