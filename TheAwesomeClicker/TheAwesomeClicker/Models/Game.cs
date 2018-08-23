@@ -10,24 +10,25 @@ using Windows.Media.Playback;
 using Windows.Media.Core;
 using System.Collections.ObjectModel;
 using ProtoBuf;
+using System.Xml.Serialization;
 
 namespace TheAwesomeClicker.Models
 {
-    [ProtoContract]
+    [XmlRoot("Game")]
     public class Game : INotifyPropertyChanged
     {
 
-        [ProtoIgnore]
+        [XmlIgnore]
         public List<MediaPlayer> AudioPlayers;
 
-        [ProtoIgnore]
+        [XmlIgnore]
         private MediaPlayer boughtUpgrade;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private ulong totalCoin = 0;
 
-        [ProtoMember(1)]
+        [XmlElement("TotalCoin")]
         public ulong TotalCoin
         {
             get { return totalCoin; }
@@ -40,7 +41,7 @@ namespace TheAwesomeClicker.Models
 
         private double perSecondAmount = 0;
 
-        [ProtoMember(2)]
+        [XmlElement("PerSecondAmount")]
         public double PerSecondAmount
         {
             get
@@ -57,7 +58,7 @@ namespace TheAwesomeClicker.Models
 
         private ulong clickAmount = 1;
 
-        [ProtoMember(3)]
+        [XmlElement("ClickAmount")]
         public ulong ClickAmount
         {
             get { return clickAmount; }
@@ -70,7 +71,7 @@ namespace TheAwesomeClicker.Models
 
         private ObservableCollection<Upgrade> upgradeList = new ObservableCollection<Upgrade>();
 
-        [ProtoMember(4)]
+        [XmlElement("UpgradeList")]
         public ObservableCollection<Upgrade> UpgradesList
         {
             get
@@ -86,7 +87,7 @@ namespace TheAwesomeClicker.Models
 
         private string background = "ms-appx:///Assets/DefaultBackground.png";
 
-        [ProtoMember(5)]
+        [XmlElement("Background")]
         public string Background
         {
             get { return background; }
@@ -98,7 +99,8 @@ namespace TheAwesomeClicker.Models
         }
 
         private string clicker = "ms-appx:///Assets/Logo.png";
-        [ProtoMember(6)]
+
+        [XmlElement("Clicker")]
         public string Clicker
         {
             get { return clicker; }
@@ -107,6 +109,15 @@ namespace TheAwesomeClicker.Models
                 clicker = value;
                 FieldChanged();
             }
+        }
+
+        private DateTime time;
+
+        [XmlElement("Time")]
+        public DateTime Time
+        {
+            get { return time; }
+            set { time = value; }
         }
 
 

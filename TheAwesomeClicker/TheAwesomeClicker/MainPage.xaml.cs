@@ -13,6 +13,7 @@ using Windows.Storage.Streams;
 using System.Threading.Tasks;
 using ProtoBuf;
 using System.Collections.ObjectModel;
+using System.Xml.Serialization;
 
 namespace TheAwesomeClicker
 {
@@ -28,7 +29,8 @@ namespace TheAwesomeClicker
         };
 
         StorageFolder def = ApplicationData.Current.LocalFolder;
-        
+
+        XmlSerializer serializer = new XmlSerializer(typeof(Game));
 
         public MainPage()
         {
@@ -55,11 +57,11 @@ namespace TheAwesomeClicker
 
             game.CanAfford(selectedUpgrade);
 
-            //if ();
+
             if (selectedUpgrade.IsBought)
             {
                 selectedItemContainer.IsEnabled = false;
-                //if (selectedUpgrade.IsBackground) 
+
             }
 
         }
@@ -75,7 +77,8 @@ namespace TheAwesomeClicker
             StorageFile f = await def.GetFileAsync("sgd.dat");
             IRandomAccessStream iras = await f?.OpenAsync(FileAccessMode.ReadWrite);
             iras.Size = 0;
-            using (Stream s = Task.Run(() => iras.AsStreamForWrite()).Result) Serializer.Serialize(s, game);
+            //using (Stream s = Task.Run(() => iras.AsStreamForWrite()).Result) Serializer.Serialize(s, game);
+            using (Stream s = Task.Run(() => iras.AsStreamForWrite()).Result) serializer.Serialize(s, game);
             SaveCard.Begin();
         }
 
@@ -84,9 +87,13 @@ namespace TheAwesomeClicker
             StorageFile f;
             FileInfo fi = new FileInfo(def.Path + "\\sgd.dat");
             f = fi.Exists ? await def.GetFileAsync("sgd.dat") : await def.CreateFileAsync("sgd.dat");
-            using (Stream s = await f?.OpenStreamForReadAsync()) game = Serializer.Deserialize<Game>(s);
-            upgradesListView.ItemsSource = game.UpgradesList;
+            //using (Stream s = await f?.OpenStreamForReadAsync()) game = Serializer.Deserialize<Game>(s);
             if (fi.Length == 0) game = null;
+            else
+            {
+                using (Stream s = await f?.OpenStreamForReadAsync()) game = (Game)serializer.Deserialize(s);
+                upgradesListView.ItemsSource = game.UpgradesList;
+            }
         }
 
         public async void DeleteSave(object sender, RoutedEventArgs e)
@@ -102,7 +109,11 @@ namespace TheAwesomeClicker
                 gmp.IsMuted = !gmp.IsMuted;
             }
         }
+        
+        private override void Close()
+        {
 
+        }
     }
 
 }

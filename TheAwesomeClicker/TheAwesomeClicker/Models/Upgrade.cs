@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.UI.Xaml.Controls;
@@ -12,7 +13,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace TheAwesomeClicker.Models
 {
-    [ProtoContract]
+    
     public class Upgrade
     {
         public Upgrade(string name, ulong changeValue, string iconPath, ulong cost, bool isBought = false, bool isBackground = false, bool isAxe = false)
@@ -32,7 +33,7 @@ namespace TheAwesomeClicker.Models
         }
         
         private ulong changeValue;
-        [ProtoMember(1)]
+        [XmlElement("ChangeValue")]
         public ulong ChangeValue
         {
             get { return changeValue; }
@@ -40,7 +41,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private bool isBought;
-        [ProtoMember(2)]
+        [XmlElement("IsBought")]
         public bool IsBought
         {
             get { return isBought; }
@@ -48,7 +49,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private string title;
-        [ProtoMember(3)]
+        [XmlElement("Title")]
         public string Title
         {
             get { return title; }
@@ -56,7 +57,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private string iconPath;
-        [ProtoMember(4)]
+        [XmlElement("IconPath")]
         public string IconPath
         {
             get { return iconPath; }
@@ -64,7 +65,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private ulong cost;
-        [ProtoMember(5)]
+        [XmlElement("Cost")]
         public ulong Cost
         {
             get { return cost; }
@@ -72,7 +73,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private bool isBackground;
-        [ProtoMember(6)]
+        [XmlElement("IsBackgound")]
         public bool IsBackground
         {
             get { return isBackground; }
@@ -80,7 +81,7 @@ namespace TheAwesomeClicker.Models
         }
 
         private bool isAxe;
-        [ProtoMember(7)]
+        [XmlElement("IsAxe")]
         public bool IsAxe
         {
             get { return isAxe; }
