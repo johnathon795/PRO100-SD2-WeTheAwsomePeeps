@@ -6,8 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    >
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -58,7 +57,7 @@
                    Grid.Row="1"
                    HorizontalAlignment="Left" VerticalAlignment="Top" 
                    FontSize="24" 
-                   Text="{x:Bind game.TotalCoin, Mode=TwoWay}" 
+                   Text="{x:Bind game.TotalCoin, Mode=OneWay}" 
                    Margin="130, 20" />
 
         <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" 
@@ -67,7 +66,7 @@
                    Grid.Row="1"
                    HorizontalAlignment="Right" VerticalAlignment="Top" 
                    FontSize="24" 
-                   Text="{x:Bind game.ClickAmount, Mode=TwoWay}" 
+                   Text="{x:Bind game.ClickAmount, Mode=OneWay}" 
                    Margin="205 20"/>
         
         <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -107,10 +106,11 @@
               Grid.Column="1" Grid.Row="1" 
               Grid.ColumnSpan="1" Background="Wheat">
 
-            <ListView x:Name="upgradesListView" Tapped="Up_Tapped" IsEnabled="True">
-
+            <ListView x:Name="upgradesListView" Tapped="Up_Tapped" IsEnabled="True" SelectionChanged="upgradesListView_SelectionChanged">
+                
+                
                 <ListView.ItemTemplate>
-
+                    
                     <DataTemplate Control.IsTemplateKeyTipTarget="False">
 
                         <StackPanel Orientation="Horizontal">
@@ -128,7 +128,7 @@
                     </DataTemplate>
 
                 </ListView.ItemTemplate>
-
+                
             </ListView>
 
         </Grid>

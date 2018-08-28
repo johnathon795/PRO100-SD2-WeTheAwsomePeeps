@@ -66,6 +66,7 @@ namespace TheAwesomeClicker.Models
             {
                 clickAmount = value;
                 FieldChanged();
+                
             }
         }
 
