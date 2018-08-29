@@ -39,10 +39,10 @@ namespace TheAwesomeClicker.Models
             }
         }
 
-        private double perSecondAmount = 0;
+        private ulong perSecondAmount = 0;
 
         [XmlElement("PerSecondAmount")]
-        public double PerSecondAmount
+        public ulong PerSecondAmount
         {
             get
             {
@@ -148,6 +148,7 @@ namespace TheAwesomeClicker.Models
 
                 if (toBuy.IsBackground) Background = toBuy.IconPath.Substring(0, 29) + ".png";
                 if (toBuy.IsAxe) Clicker = toBuy.IconPath;
+                
             }
         }
 
@@ -156,6 +157,7 @@ namespace TheAwesomeClicker.Models
             TotalCoin -= toBuy.Cost;
             toBuy.IsBought = true;
             ClickAmount += toBuy.ChangeValue;
+            if (toBuy.IsPerSecond) PerSecondAmount += toBuy.ChangeValue;
             boughtUpgrade.Play();
         }
 
@@ -163,10 +165,10 @@ namespace TheAwesomeClicker.Models
         {
             UpgradesList.Add(new Upgrade("Iron Pickaxe", 100, "ms-appx:///Assets/Iron.png", 1000, isAxe: true));
             UpgradesList.Add(new Upgrade("Diamond Pickaxe", 500, "ms-appx:///Assets/Diamond.png", 100000, isAxe: true));
-            UpgradesList.Add(new Upgrade("Wood MineCart", 50, "ms-appx:///Assets/MineCart.png", 100));
-            UpgradesList.Add(new Upgrade("Iron MineCart", 100, "ms-appx:///Assets/MineCart2.png", 1000));
-            UpgradesList.Add(new Upgrade("TNT", 1000, "ms-appx:///Assets/TnT.png", 500000));
-            UpgradesList.Add(new Upgrade("TNT", 1500, "ms-appx:///Assets/TnT2.png", 5000000));
+            UpgradesList.Add(new Upgrade("Wood MineCart", 50, "ms-appx:///Assets/MineCart.png", 100, isPerSecond: true));
+            UpgradesList.Add(new Upgrade("Iron MineCart", 100, "ms-appx:///Assets/MineCart2.png", 1000, isPerSecond: true));
+            UpgradesList.Add(new Upgrade("TNT", 150, "ms-appx:///Assets/TnT.png", 500000));
+            UpgradesList.Add(new Upgrade("Extreme TNT", 500, "ms-appx:///Assets/TnT2.png", 5000000, isPerSecond: true));
             UpgradesList.Add(new Upgrade("Drill", 1500, "ms-appx:///Assets/Drill.png", 5000000));
             UpgradesList.Add(new Upgrade("Diamond Bit Drill", 1500, "ms-appx:///Assets/Drill2.png", 5000000));
             UpgradesList.Add(new Upgrade("CoalMine", 19, "ms-appx:///Assets/Background0_Icon.png", 100, isBackground: true));

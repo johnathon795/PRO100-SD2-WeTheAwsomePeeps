@@ -15,6 +15,7 @@ using ProtoBuf;
 using System.Collections.ObjectModel;
 using System.Xml.Serialization;
 using Windows.UI.Xaml.Data;
+using System.Globalization;
 
 namespace TheAwesomeClicker
 {
@@ -30,6 +31,8 @@ namespace TheAwesomeClicker
 
         };
 
+        DispatcherTimer t = new DispatcherTimer();
+
         StorageFolder def = ApplicationData.Current.LocalFolder;
 
         XmlSerializer serializer = new XmlSerializer(typeof(Game));
@@ -38,21 +41,35 @@ namespace TheAwesomeClicker
         {
             this.InitializeComponent();
 
-            //if (game == null)
-            //{
+            
             game = new Game();
             game.MakeUpgrade();
             upgradesListView.ItemsSource = game.UpgradesList;
-            //}
-            //;
+
             mp.Play();
 
             this.Loaded += new RoutedEventHandler(Page_Loaded);
+            t.Tick += T_Tick;
+
+        }
+
+        private void T_Tick(object sender, object e)
+        {
+            game.TotalCoin += game.PerSecondAmount;
+            rateBox.Text = game.TotalCoin.ToString();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LoadGame(null, null);
+
+            DateTime timeSpan = DateTime.Now;
+            
+            var timeAway = timeSpan.Subtract(game.Time);
+
+            game.TotalCoin += (ulong)timeAway.TotalSeconds * game.PerSecondAmount;
+            rateBox.Text = game.TotalCoin.ToString();
+            t.Start();
         }
 
         private void Up_Tapped(object sender, TappedRoutedEventArgs e)
@@ -65,7 +82,7 @@ namespace TheAwesomeClicker
 
 
             if (selectedUpgrade.IsBought) selectedItemContainer.IsEnabled = false;
-
+            PerSecondRate.Text = game.PerSecondAmount.ToString();
         }
 
         private void Clicker_Tapped(object sender, PointerRoutedEventArgs e)
@@ -81,6 +98,7 @@ namespace TheAwesomeClicker
 
         public async void SaveGame(object sender, RoutedEventArgs e)
         {
+            game.Time = DateTime.Now;
             StorageFile f = await def.GetFileAsync("sgd.dat");
             IRandomAccessStream iras = await f?.OpenAsync(FileAccessMode.ReadWrite);
             iras.Size = 0;
@@ -93,9 +111,14 @@ namespace TheAwesomeClicker
         {
             StorageFile f;
             FileInfo fi = new FileInfo(def.Path + "\\sgd.dat");
+
             f = fi.Exists ? await def.GetFileAsync("sgd.dat") : await def.CreateFileAsync("sgd.dat");
 
-            if (fi.Length == 0) game = null;
+            fi = new FileInfo(def.Path + "\\sgd.dat");
+
+            t.Interval = new TimeSpan((TimeSpan.TicksPerMillisecond * 1000));
+
+            if (fi.Length == 0) return;
             else
             {
                 using (Stream s = await f?.OpenStreamForReadAsync()) game = (Game)serializer.Deserialize(s);
@@ -111,6 +134,7 @@ namespace TheAwesomeClicker
             }
             rateBox.Text = game.TotalCoin.ToString();
             pointsBox.Text = game.ClickAmount.ToString();
+            PerSecondRate.Text = game.PerSecondAmount.ToString();
 
         }
 

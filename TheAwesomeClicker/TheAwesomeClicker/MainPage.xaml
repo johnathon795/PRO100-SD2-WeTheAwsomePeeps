@@ -52,22 +52,30 @@
         <Image Source="{x:Bind game.Background, Mode=OneWay}" Grid.Column="0" Grid.Row="1" Stretch="UniformToFill"/>
 
         <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
-                   Text="Total Coin :" FontSize="24" Margin="5 20"/>
+                   Text="Total Coin :" FontSize="34" FontWeight="SemiBold" Margin="5 20"/>
         <TextBlock x:Name="rateBox" 
                    Grid.Row="1"
                    HorizontalAlignment="Left" VerticalAlignment="Top" 
-                   FontSize="24" 
+                   FontSize="34" FontWeight="SemiBold"
                    Text="{x:Bind game.TotalCoin, Mode=OneWay}" 
-                   Margin="130, 20" />
+                   Margin="240 20" />
 
         <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" 
-                   Text="Click Rate :" FontSize="24" Margin="240 20"/>
+                   Text="Click Rate :" FontSize="34" Margin="240 20" FontWeight="SemiBold"/>
         <TextBlock x:Name="pointsBox" 
                    Grid.Row="1"
                    HorizontalAlignment="Right" VerticalAlignment="Top" 
-                   FontSize="24" 
+                   FontSize="34"  FontWeight="SemiBold"
                    Text="{x:Bind game.ClickAmount, Mode=OneWay}" 
-                   Margin="205 20"/>
+                   Margin="130 20"/>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                   Text="PerSecond :" FontSize="34" Margin="0 100 240 20" FontWeight="SemiBold"/>
+        <TextBlock x:Name="PerSecondRate" 
+                   Grid.Row="1"
+                   HorizontalAlignment="Right" VerticalAlignment="Top" 
+                   FontSize="34"  FontWeight="SemiBold"
+                   Text="{x:Bind game.PerSecondAmount, Mode=OneWay}" 
+                   Margin="0 100 130 20"/>
         
         <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel.Resources>
@@ -134,5 +142,5 @@
         </Grid>
 
     </Grid>
-
+    
 </Page>

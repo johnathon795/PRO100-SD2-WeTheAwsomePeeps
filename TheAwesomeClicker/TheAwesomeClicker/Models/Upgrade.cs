@@ -16,7 +16,7 @@ namespace TheAwesomeClicker.Models
     
     public class Upgrade
     {
-        public Upgrade(string name, ulong changeValue, string iconPath, ulong cost, bool isBought = false, bool isBackground = false, bool isAxe = false)
+        public Upgrade(string name, ulong changeValue, string iconPath, ulong cost, bool isBought = false, bool isBackground = false, bool isAxe = false, bool isPerSecond = false)
         {
             this.Title = name;
             this.ChangeValue = changeValue;
@@ -25,6 +25,7 @@ namespace TheAwesomeClicker.Models
             this.IsBought = isBought;
             this.IsBackground = isBackground;
             this.IsAxe = isAxe;
+            this.IsPerSecond = isPerSecond;
         }
 
         public Upgrade()
@@ -88,5 +89,12 @@ namespace TheAwesomeClicker.Models
             set { isAxe = value; }
         }
 
+        private bool isPerSecond;
+        [XmlElement("IsPerSecond")]
+        public bool IsPerSecond
+        {
+            get { return isPerSecond; }
+            set { isPerSecond = value; }
+        }
     }
 }
